@@ -15,8 +15,8 @@ public class Main {
         
         try {
             
-            executar_leitor(new Leitor(sharedLocation));
             executar_escritor.scheduleAtFixedRate(new Escritor(sharedLocation), 0, 1, TimeUnit.MILLISECONDS);
+            executar_leitor.submit(new Leitor(sharedLocation));
                     
         } catch (Exception e) {
             
