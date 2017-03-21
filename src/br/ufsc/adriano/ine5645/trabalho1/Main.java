@@ -9,22 +9,20 @@ public class Main {
 
     public static void main(String[] args) {
         
-        ExecutorService executar_leitor = Executors.newFixedThreadPool(4);
-        ScheduledExecutorService executar_escritor = Executors.newScheduledThreadPool(1);
+        ExecutorService executarLeitor = Executors.newFixedThreadPool(4);
+        ScheduledExecutorService executarEscritor = Executors.newScheduledThreadPool(1);
         Buffer sharedLocation = new Buffer();
         
-        try {
-            
-            executar_escritor.scheduleAtFixedRate(new Escritor(sharedLocation), 0, 1, TimeUnit.MILLISECONDS);
-            executar_leitor.submit(new Leitor(sharedLocation));
+        try {            
+            executarEscritor.scheduleAtFixedRate(new Escritor(sharedLocation), 0, 1, TimeUnit.MILLISECONDS);
+            executarLeitor.submit(new Leitor(sharedLocation));
                     
-        } catch (Exception e) {
-            
+        } catch (Exception e) {            
             e.printStackTrace();
             
         }
         
-        executar_leitor.shutdown();
-        executar_escritor.shutdown();
+        executarLeitor.shutdown();
+        executarEscritor.shutdown();
     }
 }

@@ -17,9 +17,7 @@ public class Escritor implements Runnable {
     public void run() {
 
         for (int z = 0; z <= 120; z++) {
-
             sharedLocation.escrever(z);
-
         }
 
     }
